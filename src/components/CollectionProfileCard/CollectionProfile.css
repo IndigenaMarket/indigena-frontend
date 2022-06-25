@@ -1,0 +1,335 @@
+
+.CollectionProfile_card{
+height: 850px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+  padding: 0 0 40px 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.modalList li {
+  pointer-events:none; 
+  opacity:0.6;  
+}
+.CollectionSocialIcon_Container{
+  width: 1240px;
+  padding: 20px;
+  margin-left: -125px ;
+}
+.profile-responsive{
+  margin-top: 4%;
+}
+
+.profile-block {
+    margin: auto;
+    position: relative;
+    width: 100%;
+  }
+  /* .cover-container{
+    background-image:url(https://akm-img-a-in.tosshub.com/indiatoday/images/story/202005/keyboard-5017973_1920.jpeg?NxXWUVUGjpEzDYZAbAUmrfWMvpSA0qPE&size=770:433) ;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  } */
+  .profile-block-thumb{
+    
+    display: block;
+    height: 315px;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+  }
+  .profile-block-menu {
+    border: 1px solid #d3d6db;
+    border-radius: 0 0 3px 3px;
+  }
+  .profile-img a{
+    bottom: 0px;
+    box-shadow: none;
+    top: 195px;
+    display: block;
+    left: 43%;
+    padding: 1px;
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    /* background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0; */
+    z-index: 1;
+  }
+  .Collection-image-a{
+    bottom: 0px;
+    box-shadow: none;
+    top: 195px;
+    display: block;
+    left: 515px;
+    padding: 1px;
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    /* background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0; */
+    z-index: 1;
+  }
+  .profile-img img {
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 7%);
+    height: 158px;
+    padding: 5px;
+    width: 158px;
+  }
+  .collection-profile-name {
+    bottom: 216px;
+    left: 199px;
+    position: absolute;
+}
+  .collection-profile-name h2 {
+    color: #010000;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 30px;
+    left: 391px;
+    top: 42px;
+    max-width: 275px;
+    position: relative;
+ 
+  }
+  .profile-block-menu{
+    height: 44px;
+    position: relative;
+    width:100%;
+    overflow:hidden;
+   }
+  .block-menu {
+    clear: right;
+    padding-left: 205px;
+  }
+  .block-menu ul{
+      margin:0;
+      padding:0;
+  }
+  .block-menu ul li{
+      display:inline-block;
+  }
+  .block-menu ul li a {
+    border-right: 1px solid #e9eaed;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 42px;
+    line-height: 3.0;
+    padding: 0 17px;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    
+    color:#4b4f56;
+    text-transform:capitalize;
+  }
+  .block-menu ul li:first-child a{
+    border-left: 1px solid #e9eaed;
+  }
+
+  .collection-profile-details-columns{
+      display: flex;
+      
+      justify-content: space-evenly;
+  }
+
+  .collection-profile-details-group{
+    position: relative;
+    top: 100px;
+  }
+
+  .collection-profile-slogan-container{
+    position: relative;
+    top: 190px;
+    left: 535px;
+  }
+  .collection-profile-slogan-container h2{
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: left;
+    color: #333;
+    opacity: 0.7;
+  }
+
+  .collection-asset-key span{
+    font-family: 'poppins';
+    font-size: 26.4px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.59;
+    letter-spacing: normal;
+    text-align: left;
+    color: #bb1d19;
+  }
+
+  .collection-asset-key .user{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+  }
+
+  .collection-asset-value{
+    font-family: 'poppins';
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.17;
+  letter-spacing: normal;
+  
+  color: #333;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  }
+
+  .collection-profile-slogan-container h2 {
+    font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: #333;
+  }
+ 
+
+  .social-img{
+    margin-left: 1%;
+  }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .CollectionSocialIcon_Container {
+      width: 532px;
+      padding: 20px;
+      margin-left: -227px;
+    }
+    .h2_mobile{
+      margin-left: -48px;
+    }
+    .profile-responsive{
+      margin-top: 15%;
+    }
+    .Mobile-header{
+      margin-left: -90px;
+    }
+    .CollectionProfile_card {
+      height: 380px;
+      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+      padding: 0 0 40px 0;
+      overflow: hidden;
+      border-radius: 12px;
+  }
+
+    .profile-block-thumb {
+      display: block;
+      height: 115px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      object-fit: contain;
+  }
+
+  .profile-img a {
+    bottom: 0px;
+    box-shadow: none;
+    top: 65px;
+    display: block;
+    left: 85px;
+    padding: 1px;
+    position: absolute;
+    height: 75px;
+    width: 78px;
+    /* background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0; */
+    z-index: 1;
+}
+
+.profile-img img {
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 7%);
+  height: 95px;
+  padding: 5px;
+  width: 95px;
+  margin-left: -26px;
+}
+
+.collection-profile-name {
+  bottom: 210px;
+  left: 32px;
+  position: absolute;
+}
+
+.collection-profile-name h2 {
+  color: #010000;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  left: 81px;
+  top: 5px;
+  max-width: 275px;
+  position: relative;
+}
+
+.collection-profile-details-group {
+  position: relative;
+  top: -59px;
+}
+
+.collection-asset-value {
+  font-family: 'poppins';
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.17;
+  letter-spacing: normal;
+  margin-top: -43%;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection-asset-key span {
+  font-family: 'poppins';
+  font-size: 14.4px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.59;
+  letter-spacing: normal;
+  text-align: left;
+  color: #bb1d19;
+}
+
+.collection-profile-slogan-container h2 {
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: #333;
+}
+
+.collection-profile-slogan-container {
+  position: relative;
+  top: -50px;
+  left: 220px;
+}
+
+
+
+.social-img{
+  margin-top: 1%;
+  width: 20px;
+  height: 20px;
+}
+  }

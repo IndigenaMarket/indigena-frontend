@@ -1,0 +1,331 @@
+.join_Indi_page{
+    padding-bottom: 4%;
+    /* background-image: linear-gradient( #FFFFFF, #FFFFFF, #FFFFFF, #d6b9b9, #ceaaaa); */
+}
+
+.join_Indi_heading_container{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    color: #feba11;
+}
+
+.img-box1, .img-box2, .img-box3, .img-box4{
+    position: relative;
+    display: inline-block;
+    margin-left: 6%;
+    height: 60px !important;
+    width: 68px !important;
+    transition: all 1s ease;
+}
+
+ .img-box1:hover .socialIcon_hover_img1{
+    display: inline;
+    cursor: pointer;
+}
+  .img-box2:hover .socialIcon_hover_img2{
+    display: inline;
+    cursor: pointer;
+}
+  .img-box3:hover .socialIcon_hover_img3{
+    display: inline;
+    cursor: pointer;
+}
+ .img-box4:hover .socialIcon_hover_img4{
+    display: inline;
+    cursor: pointer;
+}
+
+.socialIcon_img1, .socialIcon_img2, .socialIcon_img3, .socialIcon_img4{
+   cursor: pointer;
+   
+}
+
+ .socialIcon_hover_img1 ,.socialIcon_hover_img2, .socialIcon_hover_img3 ,.socialIcon_hover_img4{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.join_community_heading{ 
+    width: 506px;
+  height: 35px;
+margin-bottom: 5%;
+  font-family: Arial;
+  font-size: 24px;
+
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+   
+}
+
+
+
+.join_community_icons_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join_community_icons_container_mobile{
+    display: none;
+}
+
+.joinComunity_rightSide{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.go_to_top_btn{
+    font-size: 40px !important;
+}
+.joinIndi_image{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    position: relative;
+    display: inline-block;
+}
+
+.contact_Details_not_active{
+    display: none;
+   content:''
+}
+
+.contact_Details_active{
+    top: 0;
+    left: 0;
+    z-index: 99;
+    border: 0.6px solid red;
+    border-radius: 25px;
+    height: 441px;
+    width: 714px;
+    background: rgba(232, 232, 232, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .section-2-hand-img{
+    cursor: pointer;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    height: 300px;
+    width: 300px;
+    z-index: ;
+} */
+
+.contact_us_btn{
+    border: 1px solid #b22222;
+    background-color: #fff;
+    outline: none;
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+    color: #b22222;
+    box-shadow: 0px 20px 18px -14px rgba(0,0,0,1);
+    z-index:3;
+    position: absolute;
+    top: 0px;
+    left: 76px;
+    right: 0;
+    bottom: 0;
+    transition: all 1s ease;
+}
+
+.contact_us_btn:hover{
+    background-color: #b22222;
+    color: white;
+    z-index: 3;
+    position: absolute;
+    top: 1px;
+    left: -90px;
+    right: 0;
+    bottom: 0;
+}
+
+.wrk_tgthr_btn{
+    border: 1px solid #b22222;
+    background-color: #fff;
+    outline: none;
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+    color: #b22222;
+    box-shadow: 0px 20px 18px -14px rgba(0,0,0,1);
+    vertical-align: bottom;
+}
+
+
+.hand_img_active{
+    top: 25%;
+    left: 60%;
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.hand_img_not_active{
+    display: none;
+    content: '';
+}
+
+.IndiCardLab_Img{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 80%;
+}
+
+.indiLabsDesc{
+    font-size: 17px;
+    padding: 0 35px 0 35px;
+}
+
+.tojoin{
+    font-size: 18px;
+    color: #333;
+    opacity: 0.6;
+}
+
+.mobile_contact_us_row{
+    display: flex;
+    align-items: center;
+    padding-top: 3%;
+}
+
+.scrollToTop{
+    cursor: pointer;
+}
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+
+    .join_community_heading{ 
+        width: 326px;
+      height: 35px;
+    margin-bottom: 5%;
+      font-family: Arial;
+      font-size: 18px;
+    margin-left: -17%;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.6;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fff;
+       
+    }
+
+    .join_Indi_heading{
+        padding: 0 50px 0 55px;
+    }
+
+    .img-box1, .img-box2, .img-box3, .img-box4 { 
+       
+        display: block;
+        margin-left: 6%;
+        height: 30px !important;
+        width: 38px !important;
+        transition: all 1s ease;
+    }
+
+    .icons_mobile_row{
+        width: 100%;
+    }
+
+    .join_community_icons_container{
+        display: none;
+    }
+
+    .join_community_icons_container_mobile{
+        display: flex;
+        margin-left: -45%;
+        margin-top: -20%;
+    }
+
+    .socialIcon_img1,.socialIcon_img2,.socialIcon_img3,.socialIcon_img4{
+        margin-left: 3%;
+        height: 30px !important;
+        width: 38px !important;
+    }
+
+    .IndiCardLab_Img{
+        padding: 0 20px 0 20px;
+    }
+
+    .hand_img_active{
+        width: 120px;
+        height: 120px;
+    }
+
+    .contact_Details_active {
+        top: 0;
+        left: 0;
+        z-index: 99;
+        border: 0.6px solid red;
+        border-radius: 25px;
+        font-size: 11px;
+        height: 490px;
+        width: 330px;
+        background: rgba(232, 232, 232, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .indiLabsDesc{
+        font-size: 12px;
+    padding: 0 35px 0 35px;
+    }
+
+    .tojoin{
+        font-size: 12px;
+    color: #333;
+    opacity: 0.6;
+    }
+
+    .contact_us_btn {
+        border: 1px solid #b22222;
+        background-color: #fff;
+        outline: none;
+        width: 160px;
+        height: 40px;
+        border-radius: 20px;
+        color: #b22222;
+        box-shadow: 0px 20px 18px -14px rgb(0 0 0);
+        z-index: 3;
+        position: absolute;
+        top: 0;
+   left: 2%;
+        right: 0;
+        bottom: 0;
+        transition: all 1s ease;
+    }
+    
+    .mobile_contact_us_row{
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+    .wrk_tgthr_btn{
+        display: none;
+    }
+}

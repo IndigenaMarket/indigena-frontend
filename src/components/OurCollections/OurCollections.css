@@ -1,0 +1,46 @@
+.each_Collection_Card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.collection_heading_container{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+/* .btn_row{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.collection_btn{
+    border: 1px solid #b22222;
+    background-color: #fff;
+    outline: none;
+    width: 180px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.carousel{
+    display: none !important;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .carousel{
+        display: block !important;
+    }
+
+    .collections_pc{
+        display: none;
+    }
+
+    .mobile_carousel{
+        margin-left: 0 !important;
+    }
+}

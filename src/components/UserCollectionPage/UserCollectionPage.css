@@ -1,0 +1,87 @@
+
+.UserCollectionPage_page{
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+
+.user-details_container{
+    cursor: pointer;
+    width: 175px;
+    height: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    border-radius: 12px;
+    padding: 8px;
+    margin-left: 3%;
+}
+
+.user-details_container:hover{
+    transform: scale(1.1);
+}
+
+.user-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+}
+ 
+
+.user-details-name{
+    font-family: 'Poppins';
+  font-size: 10px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+}
+
+
+.view-ProfileContainer{
+    margin-top: -10%;
+}
+.user-details-view{
+    
+    font-family: 'Poppins';
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6c757d;
+}
+
+.User-profile-image{
+    
+        height: 47px;
+        width: 47px;
+        border-radius: 50%;
+        display: flex;
+        background-color: #fdfafa;
+        /* margin-top: 30px; */
+        cursor: pointer;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border: 1px solid rgb(248, 171, 171);
+    
+}
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+
+    .profileImage_container{
+        display: flex;
+        flex-direction: row;
+    }
+    .user-details{
+   width: 90px !important;
+}
+}
+

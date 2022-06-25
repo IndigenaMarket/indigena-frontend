@@ -1,0 +1,56 @@
+
+
+.CollectionMainPage{
+   margin-bottom: 5%;
+}
+
+.nftcard-body{
+    margin-top: 3%;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .filter_nav_container {
+        display: inline-block;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        border-radius: 5px;
+        margin-top: 1%;
+        padding: 5% 0 0 0 !important;
+        height: 66px !important;
+        width: 78% !important;
+        margin-left: 3%;
+    }
+
+    .filtersearchbar_container {
+        margin-left: 16% !important;
+        width: 205px !important;
+        height: 33px
+    px
+     !important;
+    }
+
+    .filtersearchbar_container {
+        margin-left: 12%;
+        width: 206px;
+    }
+
+    .filter_btns {
+        border: 1px solid #b22222;
+        background-color: #fff;
+        outline: none;
+        width: 80px;
+        font-size: 10px;
+        height: 28px;
+        border-radius: 20px;
+        color: #b22222;
+        box-shadow: 0px 20px 18px -14px rgb(0 0 0);
+    }
+
+    .marketPlaceFilterRow{
+        margin-top: 5% !important;
+        padding: 0 !important;
+    }
+
+    .searchBarMobile{
+        display: block;
+    }
+}

@@ -1,0 +1,108 @@
+
+.seven_days{
+    color: #b22222;
+}
+
+/* .topCollections_heading_container{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.loading-buy {
+    --border-width: 10px;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    --mask: radial-gradient( farthest-side, transparent calc(100% - var(--border-width) - 0.5px), #000 calc(100% - var(--border-width) + 0.5px) );
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    background: linear-gradient(to top, rgba(96, 83, 132, 1), rgba(15, 8, 36, 1)) 100% 0/50% 100% no-repeat, linear-gradient(rgba(96, 83, 132, 0.5) 50%, transparent 95%) 0 0/50% 100% no-repeat;
+    animation: spin 1s linear infinite;
+    margin-left: 5%;
+    margin-bottom: 4%;
+      
+    }
+.listItem_container{
+    margin-top: 5%;
+    max-height: 97px;
+}
+
+.floorpricecontainer{
+    text-align: left;
+}
+.listItem_container::after{
+    content: "";
+    display: block; 
+    /* width: 90%; */
+    /*margin: 2em auto 0;*/
+    border-bottom: solid #333;
+    opacity: 0.23;
+}
+
+
+.listItem_img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+/* 
+.topCollections_btn_row{
+    margin-top: 4%;
+    margin-bottom: 3%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.collectionName{
+  font-size: auto;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: #333;
+ /* width: 110px;*/
+  /*height: 19px;*/
+  transition: all 0.3s;
+}
+
+.listItem_container:hover .collectionName {
+    font-weight: bold;
+}
+.listItem_container:hover .userName {
+    font-weight: bold;
+}
+.listItem_container:hover  .collection_pts {
+    font-weight: bold;
+}
+
+.userName{
+    width: 96px;
+    height: 13px;
+    font-size: 12.8px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.44;
+  letter-spacing: normal;
+  margin-left: 10px;
+  color: #333;
+  transition: all 0.1s;
+}
+
+.collection_pts{
+    transition: all 0.3s;
+}
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .topCollectionsListContainer{
+margin-bottom: 3%;
+    }
+}
+
+

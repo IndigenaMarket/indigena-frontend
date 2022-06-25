@@ -1,0 +1,29 @@
+.each_Trending_Card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .todaysPicks_heading_container{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/* .todaysPicks_btn_row{
+    margin-top: 8%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.collection_btn{
+    border: 1px solid #b22222;
+    background-color: #fff;
+    outline: none;
+    width: 180px;
+    height: 40px;
+    border-radius: 15px;
+}

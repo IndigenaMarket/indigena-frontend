@@ -1,0 +1,18 @@
+.ProfilePage_page{
+    margin-bottom: 5%;
+}
+.nftcard-body{
+    margin-top: 3%;
+}
+.mintNFT_btn{
+    border: 1px solid #b22222;
+    background-color: #b22222;
+    outline: none;
+    width: auto;
+    height: 40px;
+    border-radius: 20px;
+    color: #fff;
+    margin-top: 2%;
+    box-shadow: 0px 20px 18px -14px rgba(0,0,0,1);
+    
+}
