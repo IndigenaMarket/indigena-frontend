@@ -25,7 +25,7 @@
       
     }
 .listItem_container{
-    margin-top: 5%;
+    margin-top: 1%;
     max-height: 97px;
 }
 
@@ -35,17 +35,18 @@
 .listItem_container::after{
     content: "";
     display: block; 
-    /* width: 90%; */
-    /*margin: 2em auto 0;*/
-    border-bottom: solid #333;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 0em;
+    border-bottom: solid rgb(160, 159, 159);
     opacity: 0.23;
 }
 
 
 .listItem_img{
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 /* 
 .topCollections_btn_row{
@@ -57,12 +58,9 @@
 } */
 
 .collectionName{
-  font-size: auto;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2.29;
-  letter-spacing: normal;
+  font-size: 14px;
   text-align: left;
+  font-weight: bold;
   color: #333;
  /* width: 110px;*/
   /*height: 19px;*/
@@ -70,6 +68,7 @@
 }
 
 .listItem_container:hover .collectionName {
+    font-size: medium;
     font-weight: bold;
 }
 .listItem_container:hover .userName {
@@ -83,11 +82,8 @@
     width: 96px;
     height: 13px;
     font-size: 12.8px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 3.44;
-  letter-spacing: normal;
+  font-weight: 400;
+
   margin-left: 10px;
   color: #333;
   transition: all 0.1s;

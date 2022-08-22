@@ -7,11 +7,11 @@ import axios from 'axios';
 import { useNavigate  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { connectWallet, connectFailed } from "../../redux/WalletAction";
-import tokenAbi from'../../contracts/token.json'
-import tokenBNBAbi from'../../contracts/Wbnb.json'
-import tokenMaticAbi from'../../contracts/Wmatic.json'
+import useWindowDimensions from '../../Utils/useWindowDimensions';
+
 const AWS = require('aws-sdk');
 function TodayMinted() {
+  const {width} = useWindowDimensions();
   const[nftdata,setnftdata]=useState([]);
   const[average,setaverage]=useState(5);
   const wallet = useSelector((state) => state.WalletConnect);
@@ -27,18 +27,20 @@ function TodayMinted() {
   }, []);
 
   const TodayMintedNft=async(nft)=>{
-    history(`/collection/${process.env.REACT_APP_NFT_CONTRACT_ADDRESS}/${nft.NftId}`);
+    history(`/collection/${process.env.REACT_APP_NFT_ETH_CONTRACT}/${nft.NftId}`,{state: { owner:nft?.WalletAddress==address  }, });
   }
  
   return (
     <div className="topCollections_page">
       <div className="container-fluid">
           <div className="row topCollections_heading_container">
-              <h1 className="topCollections_heading">Today Minted NFT's</h1>
+              <h1 className="topCollections_heading">Today Minted NFT</h1>
           </div>
           <div className="row"  >
-              <div className='col-1'></div>
-              <div className='col-10 topCollectionsListContainer'>
+            {
+              width > 600 && <div className='col-1'></div>
+            }
+              <div className='col-12 col-md-10 topCollectionsListContainer'>
                   <div className='row'>
                  
                     <div className='col-md-4 col-lg-4 col-12' style={{marginRgiht:'10%'}}>
@@ -60,7 +62,9 @@ function TodayMinted() {
                   </div>
               </div>
          
-              <div className='col-1'></div>
+              {
+              width > 600 && <div className='col-1'></div>
+            }
         </div>
         {/* <div className="row btn_row" >
           <Link to='stats'>

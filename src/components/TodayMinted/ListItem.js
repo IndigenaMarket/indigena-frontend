@@ -9,10 +9,10 @@ function ListItem({nft,execute,index}) {
         <div className='container-fluid'>
             <div className='row'>
                  
-                 <div className='col-2'  >{index+1}</div>
+                 <div className='col-2' d-flex align-items-center justify-content-center >{index+1}</div>
                <div className='col-10'>
-<div className='row'>
-<div className='col-2' >
+                    <div className='row'>
+                    <div className='col-2' >
                     <img src={nft.Imageurl} className='listItem_img'/>
                 </div>
                  <div className='col-10'>
@@ -31,7 +31,7 @@ function ListItem({nft,execute,index}) {
                        </div>
                     </div>    
                  </div>
-</div>
+                    </div>
                </div>
                
                  

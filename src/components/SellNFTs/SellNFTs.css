@@ -12,7 +12,32 @@
    transition: all 0.5s ease;
    margin-top: 10%;
 }
-
+.sellCard2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(232, 232, 232, 0.3); 
+    transition: all 0.5s ease;
+    border-radius: 25px;
+    border: 0.6px solid red;
+    
+}
+.sellCard2:hover{
+    background-image: linear-gradient(130deg, rgba(0, 0, 0, 0.6) 6%, rgba(0, 0, 0, 0.5) 94%) !important;
+    backdrop-filter: blur(40px);
+}
+.sell1{
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+}
+.sell2{
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+}
 .sellCard:hover{
     background-image: linear-gradient(130deg, rgba(0, 0, 0, 0.6) 6%, rgba(0, 0, 0, 0.5) 94%) !important;
     backdrop-filter: blur(40px);
@@ -27,8 +52,15 @@
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.21;
+    
     letter-spacing: normal;
+    text-align: center;
+    color: #b22222;
+}
+.create_and_sell_title1{
+    font-family: 'Poppins';
+    font-size: 24px;
+    font-weight: bold;
     text-align: center;
     color: #b22222;
 }
@@ -60,19 +92,32 @@
     /* font-family: Mello; */
     font-size: 16px;
     font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
     text-align: center;
     color: #000;
     margin-bottom: 20%;
 }
+.sellNFTdesc1{
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     .sellCard{
         margin-top: 5%;
-        width: 270px;
+        width: 150px;
         margin-left: 17% !important;
+
+    }
+    .sell1{
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+    .sell2{
+        height: 110px;
+        justify-content: center;
+        align-items: center;
     }
 }

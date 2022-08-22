@@ -11,26 +11,33 @@
 } */
 
 .listItem_container{
-    margin-top: 5%;
-    max-height: 97px;
+    
+    display: block; 
+    width: 100%;
+    margin: 0;
+    /* border-bottom: solid rgb(160, 159, 159); */
+}
+.listItem_container:hover{
+   background-color:rgb(252, 245, 245);
+   border-radius: 10px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   border-bottom: none
 }
 
 .floorpricecontainer{
     text-align: left;
 }
-.listItem_container::after{
-    content: "";
-    display: block; 
-    /* width: 90%; */
-    /*margin: 2em auto 0;*/
-    border-bottom: solid #333;
-    opacity: 0.23;
-}
+
 
 
 .listItem_img{
     border-radius: 50%;
-    width: 40px;
+    width: 100%;
+    height: 100%;
+}
+.listItem_img1{
+    border-radius:360px;
+    width:40px;
     height: 40px;
 }
 /* 
@@ -44,44 +51,43 @@
 
 .collectionName{
   font-size: 12px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2.29;
-  letter-spacing: normal;
   white-space: nowrap;
-  
+  text-align: left;
   color: #333;
   margin-left: 10px;
- /* width: 110px;*/
-  /*height: 19px;*/
   transition: all 0.3s;
 }
 
 .listItem_container:hover .collectionName {
     font-weight: bold;
+
 }
 .listItem_container:hover .userName {
     font-weight: bold;
+    display: inline-block;
 }
 .listItem_container:hover  .collection_pts {
     font-weight: bold;
 }
-
-.userName{
-   /* width: 96px;
-    height: 12px;*/
-    font-size: 12px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 3.44;
-  letter-spacing: normal;
-  margin-left: 10px;
-  color: #333;
-  transition: all 0.1s;
+.tokenimg{
+    display: inline-block;
+    text-align: right;
+    height: 15px;
+    width: 15px;
 
 }
-
+.userName{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    font-weight: 600;
+}
+.flrvalue{
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+}
 .collection_pts{
     transition: all 0.3s;
 }

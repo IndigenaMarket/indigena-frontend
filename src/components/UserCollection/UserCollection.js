@@ -7,7 +7,6 @@ import CopyRightFooter from '../CopyRightFooter/CopyRightFooter';
 import './UserCol.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import nftAbi from '../../contracts/nft.json'
 import { useNavigate  } from "react-router-dom";
 import '../UserProfileCard/UserProfileCard.css'
 import nft from '../../Assets/nft.png'
@@ -19,7 +18,6 @@ import profilePic from '../../Assets/rectangle-11.png'
 function UserCollection({ showFilter , setShowFilter }) {
   const history = useNavigate ();
   const wallet = useSelector(state => state.WalletConnect);
-  console.log(wallet);
   const {web3, address, market} = wallet;
 
   const[nftdata,setNftData]=useState([]);
@@ -28,91 +26,46 @@ function UserCollection({ showFilter , setShowFilter }) {
 
 
   const getNftData = async() => {
-    // let data1 = [];
-
-    // const fetchDetails = async(id) => {
-    //   const contractAddress = '0xaE8DbaB8A4818D25f02d7920fa9c5F0fdB1a9c1a';
-    //   const instance = new web3.eth.Contract(nftAbi, contractAddress);
-    //   const uri = await instance.methods.tokenURI(id).call();
-    //   const res = await axios.get(uri);
-    //   res.data.price = '0.01';
-    //   res.data.contractAddress = contractAddress;
-    //   res.data.tokenId = id;
-    //   res.data.seller = address;
-    //   res.data.buyer = '0x0724b4e1B19BEAfDBc812597FDac138D26d79D98';
-    //   res.data.orderType = 0;
-    //   res.data.qty = 1;
-    //   res.data.tokenAddress = '0xD99b4BB049a6Dd490901CDfa33F15C4fAc097EF0';
-
-    //   return res.data;
-    // }
-
-    // for(let i = 1; i < 6; i++) {
-    //     data1.push(await fetchDetails(i));
-    // }
-
-    // await Promise.all(data);
-    // console.log("quanti",data1);
-
-    // setNftData(data);
     let url=window.location.href
     url=url.split('/')
     let CollectionName=url[url.length-1]
     let nftdataarray=[];
     let data={WalletAddress:address,CollectionName:CollectionName,from:"profile-collection"}
     let tokensresult=await axios.post(process.env.REACT_APP_API_URL.toString()+"/getcollections",data);
-    console.log(tokensresult.data.result)
     if(tokensresult.data.result.length>0){
       const nftcount=tokensresult.data.result[0].TokenId.length;
-      console.log(tokensresult.data.result[0]);
       if(tokensresult.data.result[0].BannerImage)
       {
-        console.log("welcome",tokensresult.data.result[0].PrifileUrl);
         setprofileimage(tokensresult.data.result[0].PrifileUrl)
         setbannerimage(tokensresult.data.result[0].BannerImage)
       }
-     
       await tokensresult.data.result[0].TokenId.map(async(tokenid)=>
       {
-        let nftresult=await axios.get("https:/indigenanft.s3.amazonaws.com/"+tokenid+".json")
-        console.log(nftresult.data.pinataContent);
+        let nftresult=await axios.get(process.env.REACT_APP_INDIGENA_BUCKETNAME+tokenid+".json") 
          nftdataarray.push(nftresult.data.pinataContent);
         if(nftcount==nftdataarray.length)
         {
-          console.log('Hi')
-          console.log("nftdataarray",nftdataarray);
           setNftData(nftdataarray);
         }
       })
     }
-   
-    
-    
   }
 
    const Putonsale=(nft)=>
   {
-    console.log(nft)
-    // alert(id);
     localStorage.setItem('ImageUrl',nft.ImageUrl)
     localStorage.setItem('nft-data',JSON.stringify(nft))
     history(`/list-item-sale/${nft.tokenId}`);
   }
   useEffect(() => {
-
     if(wallet.connected) {
-
       getNftData();
-
     }
-
-   
-
   }, [wallet.connected]);
 
   return (
     <>
-    <div className='container-fluid ProfilePage_page'>
+    <div className='container-fluid ProfilePage_page' >
         <div className='row'>
         <div className='col-1'></div>
             <div className='col-10 collction_profile_card_container'>
@@ -224,7 +177,7 @@ function UserCollection({ showFilter , setShowFilter }) {
               <div className='row'> 
               {nftdata !== [] ? nftdata.map((e, i)=>
 
-<NFTCard key={i} nft={e} execute={Putonsale} />
+<NFTCard key={i} nft={e} execute={Putonsale} address={address} />
 
 ) : ''}
           </div>
