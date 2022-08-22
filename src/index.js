@@ -6,14 +6,17 @@ import { UiProvider } from './components/UIContext/UIContext';
 import UiContext from './components/UIContext/UIContext'
 import {Provider} from 'react-redux';
 import store from './redux/store';
-
+import { theme } from "../src/theme";
+import { ThemeProvider } from '@mui/styles';
 
 
 ReactDOM.render(
     <Provider store={store}>
-        <UiProvider>
-        <App />
-        </UiProvider>
+        <ThemeProvider theme={theme}>
+            <UiProvider>
+                <App />
+            </UiProvider>
+        </ThemeProvider>
     </Provider>
 , document.getElementById('root'));
 

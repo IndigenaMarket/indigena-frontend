@@ -3,9 +3,9 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import store from "./store";
-import marketContract from "../contracts/market.json";
-import marketContractBNB from "../contracts/BNBmarket.json";
-import marketContractMATIC from "../contracts/MaticMarket.json";
+import marketContract from "../contracts/TradeContract_Eth.json";
+import marketContractBNB from "../contracts/TradeContract_BSC.json";
+import marketContractMATIC from "../contracts/TradeContract_MATIC.json";
 
 const connectRequest = () => {
   return {
@@ -27,13 +27,6 @@ export const connectFailed = (payload) => {
   };
 };
 
-// const updateAccountRequest = (payload) => {
-//   return {
-//     type: "UPDATE_ADDRESS",
-//     payload: payload,
-//   };
-// };
-
 const getProviderOptions = () => {
     const providerOptions = {
       walletconnect: {
@@ -47,11 +40,10 @@ const getProviderOptions = () => {
         }
       }
     }
-
     return providerOptions;
 }
 
-export const connectWallet = () => {
+export const connectWallet = (walletname) => {
     return async(dispatch) => {
         dispatch(connectRequest());
         try {
@@ -60,49 +52,47 @@ export const connectWallet = () => {
                 providerOptions: getProviderOptions() // required
             });
     
-            const provider = await web3Modal.connect();
-            const marketContractAddress = process.env.REACT_APP_NFT_ADDRESS
-;
-    
+            var provider = '';
+            if(walletname === "coinbasewallet"){
+              var provider = await web3Modal.connectTo('coinbasewallet')
+             }else if(walletname === "walletconnect" ){
+              var provider =await web3Modal.connectTo("walletconnect")
+             }else if(walletname === "fortmatic" ){
+               var provider =await web3Modal.connectTo("fortmatic")
+             }else if(walletname === "metamask"){
+               const web3Modal = new Web3Modal({
+                 cacheProvider: true,
+                 providerOptions: getProviderOptions().walletconnect // required
+               });
+               var provider =await web3Modal.connect()
+             }else{
+               const web3Modal = new Web3Modal({
+                 cacheProvider: true,
+                 providerOptions: getProviderOptions().walletconnect // required
+               });
+               var provider = await web3Modal.connect()
+             }
+            const marketContractAddress = process.env.REACT_APP_NFT_TRADE_ETH;
+
             await subscribeProvider(provider);
-            
             const web3 = new Web3(provider);
-        
             const accounts = await web3.eth.getAccounts();
             const address = accounts[0];
         
             const market = new web3.eth.Contract(
               marketContract,
-              //tokenContract.output.abi,
-              process.env.REACT_APP_NFT_ADDRESS
+              process.env.REACT_APP_NFT_TRADE_ETH
             );
 
             const BNB_market = new web3.eth.Contract(
               marketContractBNB,
-              //tokenContract.output.abi,
               process.env.REACT_APP_NFT_TRADE_BNB
             );
 
             const MATIC_market = new web3.eth.Contract(
               marketContractMATIC,
-              //tokenContract.output.abi,
               process.env.REACT_APP_NFT_TRADE_MATIC
             );
-
-            
-
-
-            // if((window.ethereum && window.ethereum.networkVersion !== '97')||(window.ethereum && window.ethereum.networkVersion !== '8001')) {
-            //   await addNetwork(4);
-            // }
-            // else if(window.ethereum && window.ethereum.networkVersion == '80001') {
-            //   await addNetwork(80001);
-            // }
-            // else{
-            
-            //   await addNetwork(4);
-            // }
-
             dispatch(
                 connectSuccess({
                     address,
@@ -125,25 +115,20 @@ const subscribeProvider = async(provider) => {
     if (!provider.on) {
       return;
     }
-
     provider.on('connect', async(id) => {
-      console.log(id);
     });
-
     provider.on("networkChanged", async (networkId) => {
-      if(networkId==4)
+      if(networkId==1)
       {
-        if(networkId !== '4') {
-          console.log(networkId);
+        if(networkId !== '1') {
           store.dispatch(connectFailed('Please switch to proper mainnet'));
         } else {
           store.dispatch(connectWallet());
         }
       }
-      else if(networkId==97)
+      else if(networkId==56)
       {
-        if(networkId !== '97') {
-          console.log(networkId);
+        if(networkId !== '56') {
           store.dispatch(connectFailed('Please switch to proper mainnet'));
         } else {
           store.dispatch(connectWallet());
@@ -151,8 +136,7 @@ const subscribeProvider = async(provider) => {
       }
       else 
       {
-        if(networkId !== '80001') {
-          console.log(networkId);
+        if(networkId !== '137') {
           store.dispatch(connectFailed('Please switch to proper mainnet'));
         } else {
           store.dispatch(connectWallet());
@@ -173,52 +157,41 @@ await subscribeProvider(provider);
 
 const web3 = new Web3(provider);
   let networkData;
-  switch (id) {
+  switch (Number(id)) {
    
-    case 97:
+    case 56:
       networkData = [
 
         {
-        
         chainId: "0x61",
-        
-        chainName: "BSCTESTNET",
-        
-        rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-        
+        chainName: "BNB Smart Chain Mainnet",
+        rpcUrls: ["https://bsc-dataseed1.binance.org/"],
         nativeCurrency: {
-        
         name: "BINANCE COIN",
-        
         symbol: "BNB",
-        
         decimals: 18,
-        
         },
-        
-        blockExplorerUrls: ["https://testnet.bscscan.com/"],
-        
+        blockExplorerUrls: ["https://bscscan.com/"],
         },
         
         ];
         connectWallet();
       break;
-    case 4:
+    case 1:
       networkData = [
         {
-          chainId: '0x4'
-         
+          chainId: '0x1'
         }
       ]
       break;
-    case 80001:
+    case 137:
       
       networkData=JSON.stringify(networkData)
       networkData = [
         {
-          chainId: web3.utils.toHex('80001'),
-          chainName: "Mumbai Testnet",
-          rpcUrls: ["https://rpc-mumbai.maticvigil.com"],
+          chainId: web3.utils.toHex('137'),
+          chainName: "Polygon",
+          rpcUrls: ["https://polygon-rpc.com/"],
           nativeCurrency: {
             name: "MATIC",
             symbol: "MATIC",
@@ -233,27 +206,18 @@ const web3 = new Web3(provider);
       break;
   }
 
-  console.log(networkData)
-  if(id!=4)
+  if(Number(id)!=1)
     {
       return window.ethereum.request({
-
         method: "wallet_addEthereumChain",
-        
         params: networkData,
-        
         });
-        
     }
     else
     {
-      
       return window.ethereum.request({
-
         method: "wallet_switchEthereumChain",
-        
         params: networkData,
-        
         });
     }
 }
@@ -261,8 +225,7 @@ const web3 = new Web3(provider);
 (() => {
   if(window.ethereum) {
     window.ethereum.on('networkChanged', function(networkId){
-      if(networkId !== '4') {
-        console.log(networkId);
+      if(networkId !== '1') {
         store.dispatch(connectFailed('Please switch to mainnet'));
       } else {
         store.dispatch(connectWallet());

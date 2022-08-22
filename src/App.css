@@ -1,11 +1,10 @@
 .App {
   text-align: center;
 
-  /* overflow-x: hidden; */
- 
+  overflow-x: hidden;
 }
 
-.dKfWpB{
+.dKfWpB {
   margin-top: 10%;
   z-index: 99 !important;
 }
@@ -22,25 +21,63 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
-
+img{
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+img:hover{
+  transform: scale(1.1);
+}
 .App-link {
   color: #09d3ac;
 }
 
-.navLink{
+.navLink {
   text-decoration: none !important;
   color: inherit !important;
   border: none !important;
+}
+
+.active {
+  color: #b22222 !important;
+  text-decoration: none !important;
+}
+/* body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(249, 52, 52, 0.3);
 
 }
 
-.active{
-color: #b22222 !important;
-text-decoration: none !important;
-
+body::-webkit-scrollbar-thumb {
+  background-color: #b22222;
+  border-radius: 10px;
+  outline: 1px solid #b22222;
+  height: 50px;
+} */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+*{
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.Toastify__toast-theme--dark {
+  background-color: red;
+}
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
 }
