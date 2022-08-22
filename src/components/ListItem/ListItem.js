@@ -15,13 +15,11 @@ function ListItem() {
   const[tokenId,settokenId]=useState('');
   const dispatch = useDispatch();
     const wallet = useSelector((state) => state.WalletConnect);
-    console.log(wallet);
   useEffect(() => {     
         
     let url=window.location.href
     url=url.split('/')
     let code=url[url.length-1]
-    console.log(url)
     setCode(code)
  }, [])
 

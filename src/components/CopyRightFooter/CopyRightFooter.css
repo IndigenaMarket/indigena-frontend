@@ -5,7 +5,7 @@
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.94;
+  
   letter-spacing: normal;
   text-align: center;
   color: #fff;
@@ -27,7 +27,12 @@
 .footer{
     
     /* position: relative; */
-    
+    /* width: 100%;
+    position: sticky !important;
+    z-index: 3 !important;
+    top: 0 !important;
+    height: 110px; */
+
     padding: 30px 0 0 0 ;
     height: 60px;
    left: 0;

@@ -15,11 +15,6 @@ function CollectionProfileCard() {
         <div class="col-md-12 col-sm-12">
           <div class="profile-block">
             <div class="profile-block-thumb cover-container">
-              {/* <img
-                src={banner}
-                alt=""
-                title=""
-              /> */}
             </div>
             <div class="profile-img">
               <a href="#">
@@ -36,18 +31,18 @@ function CollectionProfileCard() {
                 <div className="col-lg-3 ">
                   <div className="row">
                     <div className="col-lg-3">
-                      <img  src={fb} alt='social-fb' className="social-img"/>
+                      <img src={fb} alt='social-fb' className="social-img" />
                     </div>
                     <div className="col-lg-3">
                       <img src={twitter} alt='social-fb' className="social-img" />
                     </div>
                     <div className="col-lg-3">
-                      <img src={youtube} alt='social-fb' className="social-img"/>
+                      <img src={youtube} alt='social-fb' className="social-img" />
                     </div>
                     <div className="col-lg-3">
-                      <img src={email} alt='social-fb' className="social-img"/>
+                      <img src={email} alt='social-fb' className="social-img" />
                     </div>
-                   
+
                   </div>
                 </div>
               </div>
@@ -65,7 +60,7 @@ function CollectionProfileCard() {
                         <div className="collection-asset-key">
                           <span>Items</span>
                           <div className="collection-asset-value">xxxxxxx</div>
-                        </div> 
+                        </div>
 
                         <div className="collection-asset-key">
                           <span>Sales</span>
@@ -93,11 +88,11 @@ function CollectionProfileCard() {
               </div>
             </div>
             <div className=" container-fluid collection-profile-slogan">
-                <div className="row">
+              <div className="row">
                 <div className="col-lg-12 collection-profile-slogan-container">
-                    <h2>Slogan</h2>
+                  <h2>Slogan</h2>
                 </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>

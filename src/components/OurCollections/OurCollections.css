@@ -27,11 +27,14 @@
     border-radius: 15px;
 }
 
+/* .collection_btn::-webkit-scrollbar {
+    display: none;
+  } */
 .carousel{
     display: none !important;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     .carousel{
         display: block !important;
     }
@@ -42,5 +45,12 @@
 
     .mobile_carousel{
         margin-left: 0 !important;
+    }
+    .collection_heading_container{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
     }
 }

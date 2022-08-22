@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Collectioncard from '../ProfileCollection/Profilecard'
 import "./OurCollections.css";
 import axios from 'axios';
@@ -10,56 +10,52 @@ import collectionImage4 from "../../Assets/rectangle-2.png";
 import collectionImage5 from "../../Assets/rectangle-11.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {Fade} from "react-reveal";
+import useWindowDimensions from "../../Utils/useWindowDimensions";
 function OurCollections() {
-  const history=useNavigate()
-  const[nftcollectiondata,setNftcollectionData]=useState([]);
-  const[collectiondata,setcollectiondata]=useState([]);
-  const getNftData = async() => {
-    
- 
-    let tokensresult=await axios.get(process.env.REACT_APP_API_URL.toString()+"/getAllcollection");
-    console.log(tokensresult.data.result)
- 
-    //alert(JSON.stringify(tokensresult.data.result[0]));
-    setcollectiondata(tokensresult.data.result.filter((e,i)=> i<6));
-    
-    
-    
+  const history = useNavigate()
+  const [nftcollectiondata, setNftcollectionData] = useState([]);
+  const [collectiondata, setcollectiondata] = useState([]);
+  const getNftData = async () => {
+    let tokensresult = await axios.get(process.env.REACT_APP_API_URL.toString() + "/getAllcollection");
+    setcollectiondata(tokensresult.data.result.filter((e, i) => i < 6));
   }
   useEffect(() => {
-getNftData();
-}, []);
+    getNftData();
+  }, []);
 
-const Collections=(nft)=>
-{
-  console.log(nft)
-  localStorage.setItem("collectionname",nft.CollectionName);
-  history(`/UserCollection/${nft.CollectionName}`);
-}
+  const Collections = (nft) => {
+    localStorage.setItem("collectionname", nft.CollectionName);
+    history(`/UserCollection/${nft.CollectionName}`);
+  }
+  const {width} = useWindowDimensions()
   return (
-    
+    <>
+    {collectiondata !== [] ?   
     <div className="OurCollections_page">
       <div className="container-fluid">
         <div className="row collection_heading_container">
           <h1 className="our_collections_heading">Our Collections</h1>
         </div>
+  
+     <Fade bottom >
         <div className="row">
-          <div className="col-1"></div>
-          <div className="col-10">
-            <div className="row mobile_carousel">
-              <div className="row collections_pc" style={{justifyContent:"space-around",marginLeft:"1%"}}>
-                {/* {OurCollectionsList.map((e) => (
-                  <CollectionCard 
-                    collectionName={e.collectionName}
-                    desc={e.desc}
-                    collectionImage={e.collectionImage}
-                  />
-                ))} */}
-           {collectiondata !== [] ? collectiondata.map((e, i)=>
+          <div className='col-12 col-sm-12 '>
+              <div className= {width < 600 ? 'col-sm-12' : 'container col-sm-12'}>
+                <div className='row' style={{ justifyContent: "space-around", marginLeft: width > 600 && "1%",}}>
+                  {collectiondata !== [] ? collectiondata.map((e, i) =>
+                    <Collectioncard key={i} nft={e} execute={Collections} />
+                  ) : ''}
+                </div>
+              </div>
+            </div>
+            {/* <div className="row mobile_carousel">
+              <div className="row collections_pc" style={{ justifyContent: "space-around", marginLeft: "1%" }}>
+                {collectiondata !== [] ? collectiondata.map((e, i) =>
 
-<Collectioncard key={i} nft={e} execute={Collections} />
+                  <Collectioncard key={i} nft={e} execute={Collections} />
 
-) : ''}
+                ) : ''}
               </div>
               <div
                 id="carouselExampleIndicators"
@@ -96,77 +92,57 @@ const Collections=(nft)=>
                 <div class="carousel-inner">
                   <div className="row">
                     <div class="carousel-item active">
-                       {/* <div
-                        className="col-md-4 col-lg-4 col-12"
-                        style={{ height: "440px" }}
-                      >
-                        <div className="collection_card_container">
-                          <div class="card collection_card">
-                            <img
-                              class="card_img"
-                              src={collectionImage2}
-                              alt="Card image cap"
-                            />
-                            <div class="card_body">
-                              <h5 class="card-title">Kai</h5>
-                              <p class="card-text">Kai represents the current Indigena Team</p>
-                              <button class="live_btn">Live</button>
+                      {collectiondata !== [] ? collectiondata.filter((e, i) => i == 0).map((nft, i) =>
+                        <div
+                          className="col-md-4 col-lg-4 col-12"
+                          style={{ height: "440px" }}
+                        >
+                          <div className="collection_card_container">
+                            <div class="card collection_card">
+                              <img
+                                class="card_img"
+                                src={nft.BannerImage !== undefined ? nft.BannerImage : " "}
+                                alt="Card image cap"
+                              />
+                              <div class="card_body">
+                                <h6 class="card-title">{nft.Name}</h6>
+                                <p class="card-text">{nft.CollectionName}</p>
+                                <p class="card-text">{nft.Blockchain == "BSC SmartChain" ? "Floor Price: " + nft.FloorPrice + " BNB" : nft.Blockchain == "Polygon" ? "Floor Price: " + nft.FloorPrice + " MATIC" : "Floor Price: " + nft.FloorPrice + " ETH"}</p>
+                                <button class="live_btn" onClick={() => Collections(nft)}>View</button>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </div>) : ""}
 
-                      </div>  */}
-                     {collectiondata !== [] ? collectiondata.filter((e,i)=>i==0).map((nft, i)=>
-                       <div
-                        className="col-md-4 col-lg-4 col-12"
-                        style={{ height: "440px" }}
-                      >
-                        <div className="collection_card_container">
-                          <div class="card collection_card">
-                            <img
-                              class="card_img"
-                              src={nft.BannerImage!==undefined?nft.BannerImage:" "}
-                              alt="Card image cap"
-                            />
-                            <div class="card_body">
-                            <h6 class="card-title">{nft.Name}</h6>
-      <p class="card-text">{nft.CollectionName}</p>
-      <p class="card-text">{nft.Blockchain=="BSC SmartChain"?"Floor Price: "+nft.FloorPrice+" BNB":nft.Blockchain=="Polygon"?"Floor Price: "+nft.FloorPrice+" MATIC":"Floor Price: "+nft.FloorPrice+" ETH"}</p>
-      <button  class="live_btn" onClick={()=>Collections(nft)}>View</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div> ):""}
-                        
                     </div>
-                    {collectiondata !== [] ? collectiondata.filter((e,i)=>i >1).map((nft, i)=>
-                    
-                    <div class="carousel-item">
-                      <div
-                        className="col-md-4 col-lg-4 col-12"
-                        style={{ height: "440px" }}
-                      >
-                        <div className="collection_card_container">
-                          <div class="card collection_card">
-                            <img
-                              class="card_img"
-                              src={nft.BannerImage!==undefined?nft.BannerImage:" "}
-                              alt="Card image cap"
-                            />
-                            <div class="card_body">
-                            <h6 class="card-title">{nft.Name}</h6>
-      <p class="card-text">{nft.CollectionName}</p>
-      <p class="card-text">{nft.Blockchain=="BSC SmartChain"?"Floor Price: "+nft.FloorPrice+" BNB":nft.Blockchain=="Polygon"?"Floor Price: "+nft.FloorPrice+" MATIC":"Floor Price: "+nft.FloorPrice+" ETH"}</p>
-      <button  class="live_btn" onClick={()=>Collections(nft)}>View</button>
+                    {collectiondata !== [] ? collectiondata.filter((e, i) => i > 1).map((nft, i) =>
+
+                      <div class="carousel-item">
+                        <div
+                          className="col-md-4 col-lg-4 col-12"
+                          style={{ height: "440px" }}
+                        >
+                          <div className="collection_card_container">
+                            <div class="card collection_card">
+                              <img
+                                class="card_img"
+                                src={nft.BannerImage !== undefined ? nft.BannerImage : " "}
+                                alt="Card image cap"
+                              />
+                              <div class="card_body">
+                                <h6 class="card-title">{nft.Name}</h6>
+                                <p class="card-text">{nft.CollectionName}</p>
+                                <p class="card-text">{nft.Blockchain == "BSC SmartChain" ? "Floor Price: " + nft.FloorPrice + " BNB" : nft.Blockchain == "Polygon" ? "Floor Price: " + nft.FloorPrice + " MATIC" : "Floor Price: " + nft.FloorPrice + " ETH"}</p>
+                                <button class="live_btn" onClick={() => Collections(nft)}>View</button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    ):""}
-                   
-                    
-                    
+                    ) : ""}
+
+
+
                   </div>
                 </div>
                 <a
@@ -194,17 +170,20 @@ const Collections=(nft)=>
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-            </div>
-          </div>
-          <div className="col-1"></div>
+            </div> */}
+       
+          <div className="col-1 col-sm-0"></div>
         </div>
+        </Fade>
         <div className="row btn_row">
           <Link to='/collections'>
-          <button className="section-bottom-button">Collections</button>
+            <button className="section-bottom-button">Collections</button>
           </Link>
         </div>
       </div>
     </div>
+    :null}
+    </>
   );
 }
 

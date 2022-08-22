@@ -73,8 +73,17 @@
 }
 .nftContainer{
     position: relative;
-margin-top: 5%;
-margin-right: 5%;
+/* margin-top: 5%; */
+    margin-right: 5%;
+    max-width: auto;
+    /*z-index: 95;*/
+    /* border: solid 1px #f1c1c1 !important;
+    border-radius: 10px; */
+}
+.nftContainer2{
+    position: relative;
+/* margin-top: 5%; */
+    margin-right: 5%;
     max-width: auto;
     /*z-index: 95;*/
     /* border: solid 1px #f1c1c1 !important;
@@ -82,6 +91,10 @@ margin-right: 5%;
 }
 .esyMuQ span a{
     color:blue !important;
+}
+.empty{
+    max-height: 150px;
+    overflow: scroll !important;
 }
 
 .table-Buy  {
@@ -103,6 +116,14 @@ margin-right: 5%;
 color:blue !important;
 
 }
+.link{
+    color:blue !important;
+    
+    }
+    .linkText{
+    font-size: 13px;
+        
+        }
 .accordion-body a{
     color:blue !important;
   
@@ -113,7 +134,7 @@ color:blue !important;
 }
 .menuNFTConainer {
     height: 461px;
-    width: 377px;
+    width: 100%;
     border: solid 1px #f1c1c1;
     border-radius: 19px;
     padding: 10px; 
@@ -189,37 +210,49 @@ color:blue !important;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.83;
+  /* ; */
   letter-spacing: normal;
   text-align: left;
   color: #7c7676;
-  padding: 5% 0 0 3%;
+  /* padding: 5% 0 0 3%; */
+}
+.saleTitle2{
+    font-family: 'Poppins';
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  /* ; */
+  letter-spacing: normal;
+  text-align: left;
+  color: #7c7676;
+  /* padding: 5% 0 0 3%; */
 }
 
 .NFTHeading{
     font-family: 'Poppins';
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 0.73;
+  
   letter-spacing: normal;
-  color: #000;
+  color: rgb(45, 45, 45);
 }
 
 .ratings{
-    margin-top: 5%;
+    margin-top: 1%;
     display: flex;
     justify-content: space-evenly;
 }
 
 .ratings span {
     font-family: 'Poppins';
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.83;
+  ;
   letter-spacing: normal;
   text-align: left;
   color: #000;
@@ -246,21 +279,31 @@ color:blue !important;
 
  .saleContainer{
     
-     height: 209px;
+     height: 100px;
      border: solid 1px #f1c1c1;
     border-radius: 10px;
  }
+ .saleContainer2{
+    
+    /* height: 100px; */
+    border: solid 1px #f1c1c1;
+   border-radius: 10px;
+   justify-content: center;
+   align-items:center;
+}
 
  .sale{
      text-align: left;
  }
 
- .placeBid_btn{
+
+ .placeBid_btn button{
      margin-top: -7%;
      display: flex;
      justify-content: space-evenly;
      align-items: center;
  }
+
 
 .placeBid_btn button{
     border: 1px solid #b22222;
@@ -281,6 +324,27 @@ color:blue !important;
     background-color: #fff;
     color: #b22222;
 }
+.placeBid_btn2 button {
+    border: 1px solid #b22222;
+    background-color: #b22222;
+    color: white;
+    outline: none;
+    width: 150px;
+    height: 35px;
+    border-radius: 20px;
+    box-shadow: 0px 20px 18px -14px rgb(0 0 0);
+}
+
+.placeBid_btn2 {
+    display: flex;
+    /* justify-content:; */
+    align-items: center;
+}
+.placeBid_btn2 button:hover{
+ 
+    background-color: #fff;
+    color: #b22222;
+}
 
 .makeOffer_btn{
     margin-left: 5%;
@@ -289,6 +353,8 @@ color:blue !important;
 .claim_btn{
     margin-left: 5%; 
     background-color:  #b22222; 
+    border-radius: 10px;
+    border-color: #b22222;
     color:  #fff ;
 }
 
@@ -298,7 +364,10 @@ color:blue !important;
     align-items: center;
     margin: 5% 0 5% 0;
 }
-
+.NFTPRiceContainer2{
+    display: flex;
+    margin: 5% 0 5% 0;
+}
 
 .currentPrice{
   margin: 2% 0 0 0 ;
@@ -307,7 +376,7 @@ color:blue !important;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.22;
+  
   letter-spacing: normal;
   text-align: left;
   color: #000;
@@ -319,7 +388,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
@@ -332,7 +401,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
@@ -343,18 +412,44 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
 }
 .menuBoard_card{
-    height: 210px;
+    height: 250px;
     border: solid 1px #f1c1c1;
    border-radius: 12px;
    overflow: auto;
 
 }
+.cardListing{
+    overflow: hidden;
+    border: solid 1px #f1c1c1;
+   border-radius: 12px;
+   overflow: auto;
+}
+.cardListingMenu{
+    height: 200px;
+    overflow: auto;
+}
+.cardListingMenu2{
+    height: 140px;
+    overflow: auto;
+}
+.menuBoard_card_height{
+    max-height:250px;
+    border: solid 1px #f1c1c1;
+   border-radius: 12px;
+   overflow: auto;
+  
+}
+.menuBoard_card_recent{
+position:sticky;
+top: 0;
+}
+
 .card-header{
     
    border-top-right-radius: 12px !important;
@@ -379,10 +474,22 @@ color:blue !important;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.22;
+  
   letter-spacing: normal;
   text-align: left;
   color: #000;
+}
+.card_title2{
+    font-family: 'Poppins';
+  font-size: 20px;
+  margin-left: -3%;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  
+  letter-spacing: normal;
+  text-align: left;
+  color: rgb(84, 84, 84);
 }
 
 .proContentHeading{
@@ -391,7 +498,7 @@ color:blue !important;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.83;
+  ;
   letter-spacing: normal;
   text-align: left;
   color: #333;
@@ -401,11 +508,18 @@ color:blue !important;
 .menuBoardFilterContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
+}
+.dollar{
+    color: rgb(112, 122, 131);
+    font-size: 15px;
+}
+.currentPrice2{
+    color: rgb(112, 122, 131); 
+    font-size: 15px;
 }
 
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     .menu_btn_grp button{
     width: 60px;
     height: 30px;
@@ -418,6 +532,15 @@ color:blue !important;
     background-color: #b22222;
     color: white;
 }
+.nftContainer{
+    position: relative;
+/* margin-top: 5%; */
+    margin-right: 0%;
+    /* max-width: auto; */
+    /*z-index: 95;*/
+    /* border: solid 1px #f1c1c1 !important;
+    border-radius: 10px; */
+}
 .Timer{
     font-size: 16px;
     text-align: center;
@@ -428,11 +551,10 @@ color:blue !important;
 .pcNFTContainer{
     display: flex;
     align-items: center;
-    margin-left: 15%;
 }
 .menuNFTConainer img {
-    height: 400px;
-    width: 300px;
+    height: 350px;
+    width: 100%;
 }
 .row2  {
     margin-top: 5%;
@@ -443,11 +565,11 @@ color:blue !important;
 }
 
 .menuNFTConainer {
-    height: 425px;
-    width: 330px;
+    height: 300px;
+    width: 100%;
     border: solid 1px #f1c1c1;
     border-radius: 19px;
-    padding: 10px;
+    padding: 0;
 }
 
 .NFTHeading {
@@ -456,7 +578,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 0.73;
+    
     letter-spacing: normal;
     color: #000;
 }
@@ -472,10 +594,13 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.83;
+    ;
     letter-spacing: normal;
-    text-align: center;
+    text-align: left;
     color: #000;
+}
+.ratingsIcon{
+    text-align: left;
 }
 
 .unclockContainer {
@@ -494,7 +619,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.83;
+    ;
     letter-spacing: normal;
     text-align: left;
     color: #333;
@@ -520,13 +645,14 @@ color:blue !important;
     justify-content: space-evenly;
     align-items: center;
 }
+
 .saleTitle {
     font-family: 'Poppins';
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.83;
+    ;
     letter-spacing: normal;
     text-align: left;
     color: #7c7676;
@@ -563,7 +689,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
@@ -575,7 +701,7 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
@@ -650,10 +776,21 @@ color:blue !important;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.22;
+    
     letter-spacing: normal;
     text-align: left;
     color: #000;
+}
+.card_title2 {
+    font-family: 'Poppins';
+    font-size: 18px;
+    margin-left: 0%;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    
+    letter-spacing: normal;
+    text-align: left;
 }
 
 /* .card-header{
@@ -663,6 +800,6 @@ color:blue !important;
 .menuBoardFilterContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
 }
     }

@@ -8,15 +8,15 @@
     margin-top: 3%;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     .filter_nav_container {
         display: inline-block;
-        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        box-shadow: none;
         border-radius: 5px;
-        margin-top: 1%;
-        padding: 5% 0 0 0 !important;
-        height: 66px !important;
-        width: 78% !important;
+        margin-top: 7%;
+        padding: 0!important;
+        height: auto !important;
+        width: 95% !important;
         margin-left: 3%;
     }
 

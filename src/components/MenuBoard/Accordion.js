@@ -9,7 +9,6 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import './MenuBoardDropDown.css'
 
 function Accordion(nft) {
-  console.log(nft)
   return (
     <div>
         <div class="accordion accordion-flush MenuboardAccordion" id="accordionFlushExample">

@@ -33,14 +33,29 @@
     border: solid 1px #707070 !important;
     background-color: #fff !important;
 }
+.react-datepicker-wrapper>.react-datepicker__input-container input {
+  outline: none;
+  /* all: unset !important; */
+  width: 100% !important;
+  height: 100% !important;
+  border:none;
 
+}
+.react-datepicker-wrapper>.react-datepicker__input-container input:focus {
+  outline: none;
+  /* all: unset !important; */
+  width: 100% !important;
+  height: 100% !important;
+  border:none;
+
+}
 .input_label{
     font-family: Poppins;
   font-size: 20px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.83;
+  ;
   letter-spacing: normal;
   text-align: left;
   color: #000;
@@ -98,7 +113,7 @@ margin-top: 4%;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.83;
+    ;
     letter-spacing: normal;
     text-align: left;
     color: #797777;

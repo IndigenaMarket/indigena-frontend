@@ -8,8 +8,6 @@ function LineBreak({ color,marginTop }) {
         color: color,
         backgroundColor: color,
         height: 1,
-        
-        
     }}
 />
   )

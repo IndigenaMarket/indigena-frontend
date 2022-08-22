@@ -10,9 +10,7 @@ function ColoredLine({ color }) {
         height: 1,
         opacity:0.5,
         width:"auto",
-       
         marginLeft:"-2%"
-        
     }}
 />
   )

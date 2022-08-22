@@ -116,7 +116,7 @@ content: '';
   list-style: none;
   border: none !important;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     .faqAccordion .accordion-button{
         height: 30px !important;
         /* background-color: white; */
@@ -163,7 +163,7 @@ content: '';
     .faqAccordion .faqAccordion-item {
         border: none !important;
         outline: none !important;
-        margin-top: 1%;
+        margin-top: 3%;
        
     
       }

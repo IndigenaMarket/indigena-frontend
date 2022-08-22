@@ -5,7 +5,7 @@
   font-weight: 600 !important;
   font-stretch: normal;
   font-style: normal;
-  line-height: 3.17;
+  
   letter-spacing: normal;
   text-align: left;
   color: #333;
@@ -33,13 +33,13 @@
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.9;
+  
   letter-spacing: normal;
   text-align: left;
   color: #333;
 }
 
-.filter_nav_container {
+.filter_nav_container2 {
   display: inline-block;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   border-radius: 5px;
@@ -48,20 +48,20 @@
   height: 65px;
   width:  80% !important;
   margin-left: 10%;
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 
 .filterSearchContainer {
   display: flex;
   border-radius: 12px;
   justify-content: space-around;
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 
 .filtersearchbar_container {
   display: flex;
   align-items: flex-start;
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 
  .css-b62m3t-container{
@@ -180,7 +180,7 @@ border-radius: 20px;
   margin-top: 0px !important;
   position: absolute;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
   border: 1px solid #b22222;
@@ -280,7 +280,7 @@ border-radius: 20px;
 .filterOtpions_container {
   max-width: 300px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
-  z-index: 1;
+  z-index: 2;
   background-color: white;
 }
 .css-tlfecz-indicatorContainer{
@@ -295,7 +295,7 @@ border-radius: 20px;
 .collections_btn_container {
   display: block !important;
   align-items: center;
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 
 .filter_btns button::after{
@@ -375,7 +375,7 @@ border-radius: 20px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2.03;
+  
   letter-spacing: normal;
   text-align: center;
   color: #7c7676;
@@ -400,7 +400,7 @@ border-radius: 20px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2.03;
+  
   letter-spacing: normal;
   text-align: center;
   color: #7c7676;
@@ -454,7 +454,7 @@ border-radius: 20px;
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   animation: dropdown 0.5s ease-out;
 }
 
@@ -466,7 +466,7 @@ border-radius: 20px;
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   animation: dropdown 0.5s ease-out;
   display: flex;
   flex-direction: column;
@@ -483,7 +483,7 @@ border-radius: 20px;
    margin-top: 10%;
    overflow: auto;
    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-   /* z-index: 1; */
+
  
    /* animation: dropup 0.5s ease-out; */
 }
@@ -498,7 +498,7 @@ border-radius: 20px;
   overflow: auto;
   margin-top: 10%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  /* z-index: 1; */
+
   height: 80px;
   /* animation: dropup 0.5s ease-out; */
 }
@@ -515,7 +515,7 @@ border-radius: 20px;
   padding-top: 1% !important;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   animation: dropdown 0.5s ease-out;
 }
 
@@ -547,8 +547,8 @@ border-radius: 20px;
 
 
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  .filter_nav_container {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  /* .filter_nav_container {
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     border-radius: 5px;
@@ -557,8 +557,25 @@ border-radius: 20px;
     height: 66px !important;
     width: 78% !important;
     margin-left: 58px;
+    background-color: yellow;
+} */
+.filterSearchContainer {
+  display: flex;
+  border-radius: 12px;
+  justify-content: space-between !important;
+  align-items: center;
+  z-index: 2 !important;
 }
-
+.filter_nav_container2 {
+  display: inline-block;
+  box-shadow: none;
+  border-radius: .5em;
+  padding: 1%;
+  height: 50px;
+  width:  100% !important;
+  margin: 0;
+  z-index: 2 !important;
+}
   .searchBar{
     display: none;
   }
@@ -591,7 +608,7 @@ border-radius: 20px;
     box-shadow: 0px 20px 18px -14px rgb(0 0 0);
 }
 .form-select sortSelection{
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 
 .filtersearchbar_container .filtersearchbar {

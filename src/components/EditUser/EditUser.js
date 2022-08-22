@@ -7,169 +7,209 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { useState } from "react";
 import CopyRightFooter from "../CopyRightFooter/CopyRightFooter";
-import './EditUser.css'
-import { useRef,useEffect } from "react";
-import { useSelector } from 'react-redux';
+import "./EditUser.css";
+import { useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
-import S3 from 'react-aws-s3'
+// import S3 from 'react-aws-s3';
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3Client } from "../s3client";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FormatDate1 } from "../Helper/index";
+import CountryData from "../../Assets/country/countries.json"
+import useWindowDimensions from "../../Utils/useWindowDimensions";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 function EditUser() {
-  const wallet = useSelector(state => state.WalletConnect);
+  const {width} = useWindowDimensions()
+  const wallet = useSelector((state) => state.WalletConnect);
   const [files, setFiles] = useState([]);
-  const[file,setFile] = useState(null);
-  const[banner,setbanner] = useState(null);
-  const fileInput=useRef();
-  const bannerInput=useRef();
-  const[firstName,setfirstName]=useState('');
-  const[lastName,setlastName]=useState('');
-  const[userName,setuserName]=useState('');
-  const[profileImage,setprofileImage]=useState('');
-  const[bannerImage,setbannerImage]=useState('');
-  const[about,setabout]=useState('');
-  const[email,setemail]=useState('');
-  const[phoneNumber,setphoneNumber]=useState('');
-  const[country,setcountry]=useState('');
-  const[twitter,settwitter]=useState('');
-  const[facebook,setfacebook]=useState('');
-  const[other,setother]=useState('');
-  const[createdAt,setcreatedAt]=useState('');
-  const history = useNavigate ();
-  const {web3, address, market,} = wallet;
-  console.log(wallet);
-  
-  const profileImageHandle=(file)=>
-  {
-      setFile(file);
-      ReactS3Client.uploadFile(file).then(data=> {
+  const [file, setFile] = useState(null);
+  const [banner, setbanner] = useState(null);
+  const fileInput = useRef();
+  const bannerInput = useRef();
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [userName, setuserName] = useState("");
+  const [profileImage, setprofileImage] = useState("");
+  const [bannerImage, setbannerImage] = useState("");
+  const [about, setabout] = useState("");
+  const [email, setemail] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [country, setcountry] = useState("");
+  const [twitter, settwitter] = useState("");
+  const [facebook, setfacebook] = useState("");
+  const [other, setother] = useState("");
+  const [createdAt, setcreatedAt] = useState("");
+  const history = useNavigate();
+  const { web3, address, market } = wallet;
+  const profileImageHandle = async (file) => {
+    const currenttimestamp = new Date().getTime();
+    const contentType = file.type;
+    const fPath = file.uri;
+    let name = file.name;
+    let extension = "." + name.split(".").pop();
+    const bucketParams = {
+      Bucket: "indigena",
+      Key: "profilepic" + currenttimestamp + extension,
+      Body: file,
+      ContentType: contentType,
+      ACL: "public-read",
+    };
+    setFile(file);
+    const filename =
+      process.env.REACT_APP_INDIGENA_BUCKETNAME +
+      "profilepic" +
+      currenttimestamp +
+      extension;
+    try {
+      const res = await s3Client.send(new PutObjectCommand(bucketParams));
 
-        console.log(data);
-   
-        if(data.status === 204) {
-   
-          //console.log('success')
-          setprofileImage(data.location)
-   
-        } else {
-   
-          console.log('fail')
-   
-        }
-   
-      })
-  }
-  const bannerImageHandle=(file)=>
-  {
-   
-      setbanner(file);
-      ReactS3Client.uploadFile(file).then(data=> {
-
-        console.log(data);
-   
-        if(data.status === 204) {
-   
-          console.log('success')
-          setbannerImage(data.location)
-   
-        } else {
-   
-          console.log('fail')
-   
-        }
-   
-      })
-  }
-  const config = {
-    bucketName: "indigenanft",
-    dirName: 'collections',
-    region: "ap-southeast-2",
-    accessKeyId: "AKIAQMYT3V5MLRXZJTI2",
-    secretAccessKey: "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",
+      setprofileImage(filename);
+    } catch (e) {
+      // console.log("Error", e);
+    }
   };
-  const ReactS3Client = new S3(config);
-  const Updateprofile=async()=>
-  {
-    let data={};
-    data['UserName']=userName
-    data['PrifileUrl']=profileImage
-    data['FirstName']=firstName
-    data['LastName']=lastName
-    data['BannerImage']=bannerImage
-    data['About']=about
-    data['Email']=email
-    data['PhoneNumber']=phoneNumber
-    data['Country']=country
-    data['FaceBook']=facebook
-    data['Twitter']=twitter
-    data['Other']=other
-    data['WalletAddress']=address
-    console.log(data)
-    if(wallet.connected&&userName&&email&&address&&phoneNumber&&country&&firstName&&lastName)
-    {
-        let result=await axios.put(process.env.REACT_APP_API_URL.toString()+"/editprofile",data);
-        console.log(result);
-        if(result.status)
-        {
-          alert("Updated successfully");
-          history('/user-profile');
-        }
+  const bannerImageHandle = async (file) => {
+    const currenttimestamp = new Date().getTime();
+    const contentType = file.type;
+    const fPath = file.uri;
+    let name = file.name;
+    let extension = "." + name.split(".").pop();
+    const bucketParams = {
+      Bucket: "indigena",
+      Key: "bannerpic" + currenttimestamp + extension,
+      Body: file,
+      ContentType: contentType,
+      ACL: "public-read",
+    };
+    setbanner(file);
+    const filename =
+      process.env.REACT_APP_INDIGENA_BUCKETNAME +
+      "bannerpic" +
+      currenttimestamp +
+      extension;
+
+    try {
+      const res1 = await s3Client.send(new PutObjectCommand(bucketParams));
+    
+      setbannerImage(filename);
+    } catch (e) {
+      // console.log("Error", e);
     }
-    else{
-      if(!wallet.connected)
-      {
-        alert("Please connect your wallet")
-      }
-      else if(userName=='')
-      {
-        alert("Please enter the username")
-      }
-      else if(email=='')
-      {
-        alert("Please enter the email")
-      }
-      else if(phoneNumber=='')
-      {
-        alert("Please enter the phone number")
-      }
-      else if(country=='')
-      {
-        alert("Please select the country")
-      }
-      else if(firstName=='')
-      {
-        alert("Please select the firstname")
-      }
-      else if(lastName=='')
-      {
-        alert("Please select the lastname")
-      }
-      
+  };
+
+  const Updateprofile = async () => {
+    let data = {};
+    if (address == "") {
+      toast("Connect your wallet");
+      return;
+    }
+    if (userName != "") {
+      data["UserName"] = userName;
+    }
+    if (email != "") {
+      data["Email"] = email;
+    }
+    if (phoneNumber != "") {
+      data["PhoneNumber"] = phoneNumber;
+    }
+    if (country != "") {
+      data["Country"] = country;
+    }
+    if (firstName != "") {
+      data["FirstName"] = firstName;
+    }
+    if (lastName != "") {
+      data["LastName"] = lastName;
+    }
+    if (profileImage != "") {
+      data["PrifileUrl"] = profileImage;
+    } else {
+      data["PrifileUrl"] =
+        "https://indigena.nyc3.digitaloceanspaces.com/profilepic1657865457220nft.png";
+    }
+    if (bannerImage != "") {
+      data["BannerImage"] = bannerImage;
+    } else {
+      data["BannerImage"] =
+        "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202005/keyboard-5017973_1920.jpeg?NxXWUVUGjpEzDYZAbAUmrfWMvpSA0qPE&size=770:433";
     }
 
-  }
+    if (about != "") {
+      data["About"] = about;
+    }
+    if (facebook != "") {
+      data["FaceBook"] = facebook;
+    }
+    if (twitter != "") {
+      data["Twitter"] = twitter;
+    }
+    if (other != "") {
+      data["Other"] = other;
+    }
+    if (address != "") {
+      data["WalletAddress"] = address;
+    }
+
+    if (
+      wallet.connected &&
+      userName &&
+      // email &&
+      // address &&
+      // phoneNumber &&
+      // country &&
+      firstName &&
+      lastName
+    ) {
+      let result = await axios.put(
+        process.env.REACT_APP_API_URL.toString() + "/editprofile",
+        data
+      );
+      if (result.status) {
+        toast("Updated success");
+        history("/user-profile");
+      }
+    } else {
+      if (!wallet.connected) {
+        toast("Please connect your wallet");
+      } else if (userName == "") {
+        toast("Please enter the username");
+      }
+      //  else if (email == "") {
+      //   toast("Please enter the email");
+      // } else if (phoneNumber == "") {
+      //   toast("Please enter the phone number");
+      // } else if (country == "") {
+      //   toast("Please select the country");
+      // }
+      else if (firstName == "") {
+        toast("Please select the firstname");
+      } else if (lastName == "") {
+        toast("Please select the lastname");
+      }
+    }
+  };
   useEffect(() => {
-
-    if(wallet.connected) {
-
+    if (wallet.connected) {
       getNftData();
-
     }
-
-   
-
   }, [wallet.connected]);
-  const getNftData = async() => {
-   
-    let nftdataarray=[];
-    let data={WalletAddress:address}
-    let tokensresult=await axios.post(process.env.REACT_APP_API_URL.toString()+"/getnft",data);
-    console.log(tokensresult.data.result[0])
-    setfirstName(tokensresult.data.result[0].FirstName)
-    setlastName(tokensresult.data.result[0].LastName)
-    setuserName(tokensresult.data.result[0].UserName)
+  const getNftData = async () => {
+    let nftdataarray = [];
+    let data = { WalletAddress: address };
+    let tokensresult = await axios.post(
+      process.env.REACT_APP_API_URL.toString() + "/getnft",
+      data
+    );
+    setfirstName(tokensresult.data.result[0].FirstName);
+    setlastName(tokensresult.data.result[0].LastName);
+    setuserName(tokensresult.data.result[0].UserName);
     setprofileImage(tokensresult.data.result[0].PrifileUrl);
+    setFile(tokensresult.data.result[0].PrifileUrl);
     setbannerImage(tokensresult.data.result[0].BannerImage);
+    setbanner(tokensresult.data.result[0].BannerImage);
     setabout(tokensresult.data.result[0].About);
     setemail(tokensresult.data.result[0].Email);
     setphoneNumber(tokensresult.data.result[0].PhoneNumber);
@@ -177,37 +217,35 @@ function EditUser() {
     settwitter(tokensresult.data.result[0].Twitter);
     setfacebook(tokensresult.data.result[0].FaceBook);
     setother(tokensresult.data.result[0].Other);
-    setcreatedAt(tokensresult.data.result[0].createdAt)
-  }
-  const logoutclicked=()=>{
-    history('/');
-  }
+    setcreatedAt(tokensresult.data.result[0].createdAt);
+  };
+  const logoutclicked = () => {
+    history("/");
+  };
   return (
     <>
-      <div className="EditUser_page">
+      <div className="EditUser_page" >
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-2 col-2 col-md-2">
-              <LogoutIcon onClick={()=>logoutclicked()}/>
+              <LogoutIcon onClick={() => logoutclicked()} />
             </div>
             <div className="col-lg-10"></div>
           </div>
           <div className="row">
-            <div className="col-lg-3"></div>
-            <div className="col-lg-6">
+            <div className="col-0 col-md-3 "></div>
+            <div className="col-12 col-md-6">
               <div className="row">
                 <div className="col-lg-3"></div>
                 <div className="col-lg-6 headingContainer">
-                  <span className="EditUser_Heading">
-                    Account
-                  </span>
+                  <span className="EditUser_Heading">Account</span>
                 </div>
                 <div className="col-lg-3"></div>
               </div>
               <form>
-              <div class="form-group">
+                <div class="form-group ">
                   <div className="col-lg-12 collection_input_label">
-                    <span>{"Profile"+" *"}</span>
+                    <span>{"Profile" + " *"}</span>
                   </div>
                   <small
                     id="exampleFormControlSelect1"
@@ -220,107 +258,182 @@ function EditUser() {
                     class="form-control user-name-input"
                     id="exampleInputEmail1"
                     placeholder="First name"
+                    style={{ height: "45px" }}
                     value={firstName}
-                    onChange={(e)=>setfirstName(e.target.value)}
+                    onChange={(e) => setfirstName(e.target.value)}
                   />
                   <input
                     type="text"
                     class="form-control user-name-input"
                     id="exampleInputEmail1"
                     placeholder="Last name"
+                    style={{ height: "45px" }}
                     value={lastName}
-                    onChange={(e)=>setlastName(e.target.value)}
+                    onChange={(e) => setlastName(e.target.value)}
                   />
                   <input
                     type="text"
                     class="form-control user-name-input"
                     id="exampleInputEmail1"
                     placeholder="User name"
+                    style={{ height: "45px" }}
                     value={userName}
-                    onChange={(e)=>setuserName(e.target.value)}
+                    onChange={(e) => setuserName(e.target.value)}
                   />
                 </div>
-                <div className="form-group">
-                <div className="col-lg-12 collection_input_label">
+                <div className="form-group ">
+                  <div className="col-lg-12 collection_input_label">
                     <span>Profile Image</span>
                   </div>
                   <div className="profileImage_container">
-                  <label className="imglabel" htmlFor="fileInput">
-      
-      <span className='writeIcon'>{file && ( 
-      <img className="imgUpload" src={profileImage!=='' ? (profileImage):(URL.createObjectURL(file))} alt="" />
-      )}
-            </span>
-          </label>
-         
-            <input type='file' id="fileInput" style={{ display: "none" }}  onChange={(e) => profileImageHandle(e.target.files[0])} ref={fileInput} accept='image/*' />
-                <div className=" container editImg_btn">
-                        <div >
-                        <button onClick={()=> fileInput.current.click()} >Change</button>
-                        </div>
-                        <div > 
-                        <button className="remove_btn" onClick={()=>setprofileImage(' ')}>Remove</button>
+                    <div className="container col-lg-3">
+                      <label htmlFor="fileInput">
+                        <span className="writeIcon">
+                          {profileImage == "" ? (
+                            <div
+                              className="imgUpload"
+                              style={{
+                                backgroundColor: "rgba(0,0,0,0.05)",
+                                color: "rgba(0,0,0,0.1)",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              upload
+                            </div>
+                          ) : (
+                            <img
+                              className="imgUpload"
+                              src={profileImage}
+                              alt=""
+                            />
+                          )}
+                        </span>
+                      </label>
+
+                      <input
+                        type="file"
+                        id="fileInput"
+                        style={{ display: "none" }}
+                        onChange={(e) => profileImageHandle(e.target.files[0])}
+                        accept="image/*"
+                      />
+                    </div>
+
+                    <div
+                      className="container  col-lg-9"
+                      style={{
+                        display: "flex",
+                        flexDirection: width > 600 ? "row" : "column",
+                        justifyContent:"center",
+                        alignItems: width > 600 ? "center" : "flex-end",
+                      }}
+                    >
+                      <div>
+                        <label className="editremove1" htmlFor="fileInput2">
+                          <input
+                            type="file"
+                            id="fileInput2"
+                            style={{ display: "none" }}
+                            onChange={(e) =>
+                              profileImageHandle(e.target.files[0])
+                            }
+                            accept="image/*"
+                          />
+                          {profileImage == "" ? "Upload" : "Change"}
+                        </label>
+                      </div>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <div
+                          className="remove_btn2"
+                          onClick={() => {
+                            // setFile(null);
+                            setprofileImage("");
+                          }}
+                        >
+                          <span>Remove</span>
                         </div>
                       </div>
+                    </div>
                   </div>
                 </div>
                 <div className="form-group">
-                {/* <div className="col-lg-12 collection_input_label">
-                  <span>Banner Image</span>
-                </div>
-
-                <small
-                  id="exampleFormControlSelect1"
-                  class="form-text text-muted collectionSmallText"
-                >
-                  This image will appear at the top of your collection page
-                </small>
-                <FilePond
-                  files={files}
-                  onupdatefiles={setFiles}
-                  allowMultiple={true}
-                  maxFiles={3}
-                  server="/api"
-                  name="files"
-                  labelIdle='Drag & Drop your files <br/>or <span class="filepond--label-action"><br/>Browse Files</span>'
-                />
-                 <div className="row">
-                  <div className=" container editUser_btn">
-                        <div >
-                        <button >Change</button>
-                        </div>
-                        <div > 
-                        <button className="remove_btn">Remove</button>
-                        </div>
-                      </div>
-                  </div> */}
                   <div className="col-lg-12 collection_input_label">
                     <span>Banner Image</span>
                   </div>
                   <div className="profileImage_container">
-                  <label className="imglabel" htmlFor="bannerInput">
-      
-      <span className='Writebanner'>{banner && ( 
-      <img className="imgUpload" src={URL.createObjectURL(banner)} alt="" />
-      )}
-            </span>
-          </label>
-         
-            <input type='file' id="bannerInput" style={{ display: "none" }} onChange={(e) => bannerImageHandle(e.target.files[0])} ref={bannerInput} accept='image/*' />
-                <div className=" container editImg_btn">
-                        <div >
-                        <button onClick={()=> bannerInput.current.click()}>Change</button>
-                        </div>
-                        <div > 
-                        <button className="remove_btn" onClick={()=>setbannerImage(' ')}>Remove</button>
+                    <div className="container col-lg-3">
+                      <label htmlFor="bannerInput" style={{}}>
+                        <span className="writeIcon">
+                          {bannerImage == "" ? (
+                            <div
+                              className="imgUpload"
+                              style={{
+                                backgroundColor: "rgba(0,0,0,0.05)",
+                                color: "rgba(0,0,0,0.1)",
+                                justifyContent: "center",
+                                alignItems: "flex-end",
+                              }}
+                            >
+                              upload
+                            </div>
+                          ) : (
+                            <img
+                              className="imgUpload"
+                              src={bannerImage}
+                              alt=""
+                            />
+                          )}
+                        </span>
+                      </label>
+
+                      <input
+                        type="file"
+                        id="bannerInput"
+                        style={{ display: "none" }}
+                        onChange={(e) => bannerImageHandle(e.target.files[0])}
+                        accept="image/*"
+                      />
+                    </div>
+
+                    <div
+                      className="container  col-lg-9"
+                      style={{
+                        display: "flex",
+                        flexDirection: width > 600 ? "row" : "column",
+                        justifyContent:"center",
+                        alignItems: width > 600 ? "center" : "flex-end",
+                      }}
+                    >
+                      <div>
+                        <label className="editremove1" htmlFor="bannerInput2">
+                          <input
+                            type="file"
+                            id="bannerInput2"
+                            style={{ display: "none" }}
+                            onChange={(e) =>
+                              bannerImageHandle(e.target.files[0])
+                            }
+                            accept="image/*"
+                          />
+                          {bannerImage == "" ? "Upload" : "Change"}
+                        </label>
+                      </div>
+                      <div style={{ paddingLeft: "10px" }}>
+                        <div
+                          className="remove_btn2"
+                          onClick={() => {
+                            // setbanner(null);
+                            setbannerImage("");
+                          }}
+                        >
+                          <span>Remove</span>
                         </div>
                       </div>
+                    </div>
                   </div>
+                </div>
 
-              </div>
-                 
-               
-               
                 <div class="form-group">
                   <div className="col-lg-12 collection_input_label">
                     <span>About</span>
@@ -330,7 +443,7 @@ function EditUser() {
                     id="emailHelp"
                     class="form-text text-muted collectionSmallText"
                   >
-                   Describe about yourself here.
+                    Describe about yourself here.
                   </small>
                   <textarea
                     //name="user-message"
@@ -342,13 +455,14 @@ function EditUser() {
                     maxlength="250"
                     placeholder="Provide a detailed description of yourself."
                     value={about}
-                    onChange={(e)=>setabout(e.target.value)}
+                    style={{ height: "90px" }}
+                    onChange={(e) => setabout(e.target.value)}
                   ></textarea>
                 </div>
 
                 <div class="form-group">
                   <div className="col-lg-12 collection_input_label">
-                    <span>{"Personal Information"+" *"}</span>
+                    <span>{"Personal Information" + " *"}</span>
                   </div>
                   <small
                     id="exampleFormControlSelect1"
@@ -362,25 +476,35 @@ function EditUser() {
                     id="exampleInputEmail1"
                     placeholder="Email address"
                     value={email}
-                    onChange={(e)=>setemail(e.target.value)}
+                    style={{ height: "45px" }}
+                    onChange={(e) => setemail(e.target.value)}
                   />
                   <input
-                    type="text"
+                    type="number"
                     class="form-control user-name-input"
                     id="exampleInputEmail1"
                     placeholder="Phone Number"
                     value={phoneNumber}
-                    onChange={(e)=>setphoneNumber(e.target.value)}
+                    style={{ height: "45px" }}
+                    onChange={(e) => setphoneNumber(e.target.value)}
                   />
-                   <select class="form-select" id="exampleFormControlSelect1" onChange={(e)=>setcountry(e.target.value)}>
+                  <select
+                    class="form-select"
+                    id="exampleFormControlSelect1"
+                    style={{ height: "45px" }}
+                    onChange={(e) => setcountry(e.target.value)}
+                  >
                     <option value="" selected disabled>
                       Country
                     </option>
                     <option value={"USA"}>USA</option>
-                    <option value={"India"}>India</option>
-                    <option value={"Japan"}>Japan</option>
-                    <option value={"Australia"}>Australia</option>
-                    <option value={"United Kingdom"}>United Kingdom</option>
+                    {
+                        CountryData.map((x)=>{
+                          return(
+                            <option value={x.country}>{x.country}</option>
+                          )
+                        })
+                    }
                   </select>
                 </div>
                 <div class="form-group">
@@ -399,7 +523,8 @@ function EditUser() {
                     id="exampleInputEmail1"
                     placeholder="Facebook"
                     value={facebook}
-                    onChange={(e)=>setfacebook(e.target.value)}
+                    style={{ height: "45px" }}
+                    onChange={(e) => setfacebook(e.target.value)}
                   />
                   <input
                     type="text"
@@ -407,7 +532,8 @@ function EditUser() {
                     id="exampleInputEmail1"
                     placeholder="Twitter"
                     value={twitter}
-                    onChange={(e)=>settwitter(e.target.value)}
+                    style={{ height: "45px" }}
+                    onChange={(e) => settwitter(e.target.value)}
                   />
                   <input
                     type="text"
@@ -415,21 +541,28 @@ function EditUser() {
                     id="exampleInputEmail1"
                     placeholder="Other"
                     value={other}
-                    onChange={(e)=>setother(e.target.value)}
+                    style={{ height: "45px" }}
+                    onChange={(e) => setother(e.target.value)}
                   />
                 </div>
               </form>
               <div className="row">
-              <small
-                    id="exampleFormControlSelect1"
-                    class="form-text text-muted AccountCreation"
-                  >
-                   { "The account was created on " + createdAt.toString()}
-                  </small>
+                <small
+                  id="exampleFormControlSelect1"
+                  class="form-text text-muted AccountCreation"
+                >
+                  {createdAt == ""
+                    ? ""
+                    : createdAt == undefined
+                    ? ""
+                    : "The account was created on " + FormatDate1(createdAt)}
+                </small>
               </div>
-              <button className="mintNFT_btn" onClick={()=>Updateprofile()}>Create</button>
+              <button className="mintNFT_btn1" onClick={() => Updateprofile()}>
+                Update
+              </button>
             </div>
-            <div className="col-lg-3"></div>
+            <div className="col-3"></div>
           </div>
         </div>
       </div>
